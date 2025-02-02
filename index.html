@@ -14,28 +14,32 @@
             background-repeat: no-repeat;
             color: #d01f4c;
             text-align: center;
-            padding: 50px;
+            padding: 20px;
+            margin: 0;
         }
         h1 {
-            font-size: 3em;
+            font-size: 2em;
+            margin-top: 20px;
         }
         .mensaje {
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin-top: 20px;
         }
         .corazon {
-            font-size: 3em;
+            font-size: 2em;
             color: red;
         }
         .boton {
             background-color: #d01f4c;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            padding: 10px 20px;
+            font-size: 1em;
             margin: 10px;
             cursor: pointer;
             border-radius: 5px;
+            width: 80%;
+            max-width: 300px;
         }
         .boton:hover {
             background-color: #a01a3f;
@@ -44,12 +48,16 @@
             display: none; /* Estará oculto hasta que se haga clic en "Sí" o "No" */
         }
         img {
-            width: 500px; /* Más grande que antes */
-            margin-top: 30px; /* Más espacio entre el texto y la imagen */
-            margin-bottom: 20px; /* Espacio abajo para un mejor diseño */
-            display: block; /* Centra la imagen */
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        #iniciarMusicaBtn {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -70,7 +78,6 @@
     <img id="imagenInicial" src="Cuyo.jpg" alt="Cuyo"> <!-- Imagen inicial -->
     <button id="btnSi" class="boton" onclick="mostrarOpciones('si')">Sí</button>
     <button id="btnNo" class="boton" onclick="mostrarOpciones('no')">No</button>
-                 
 
     <!-- Opciones que se mostrarán después de hacer clic -->
     <div id="contenedorRespuesta" class="contenedor-botones">
