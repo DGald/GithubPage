@@ -8,6 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #fbe0e4;
+            background-image: url('flores.jpg'); /* Asegúrate de tener esta imagen en el mismo directorio o usa una URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #d01f4c;
             text-align: center;
             padding: 50px;
@@ -23,12 +27,119 @@
             font-size: 3em;
             color: red;
         }
+        .boton {
+            background-color: #d01f4c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .boton:hover {
+            background-color: #a01a3f;
+        }
+        .contenedor-botones {
+            display: none; /* Estará oculto hasta que se haga clic en "Sí" o "No" */
+        }
+        img {
+            width: 500px; /* Más grande que antes */
+            margin-top: 30px; /* Más espacio entre el texto y la imagen */
+            margin-bottom: 20px; /* Espacio abajo para un mejor diseño */
+            display: block; /* Centra la imagen */
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
     <h1>Feliz Día de San Valentín, mi cuya</h1>
-    <p class="mensaje">Quería sorprenderte con algo especial, ya que sabe que soy un TI y ademas queria probarme creando una pagina web</p>
-    <div class="corazon">eres lo más importante para mí. Te amo mucho❤️</div>
-    <p class="mensaje">Ojalá ese día ir al McDonald</p>
+
+    <!-- Agregar música -->
+    <audio id="cancionMenu" loop>
+        <source src="cancionmenu.mp3" type="audio/mp3">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+
+    <!-- Botón para iniciar la música -->
+    <button id="iniciarMusicaBtn" class="boton" onclick="iniciarMusica()">Iniciar Música</button>
+
+    <!-- Pregunta inicial con los botones -->
+    <p id="mensajePregunta" class="mensaje">¿Quieres pasar San Valentín conmigo?</p>
+    <img id="imagenInicial" src="Cuyo.jpg" alt="Cuyo"> <!-- Imagen inicial -->
+    <button id="btnSi" class="boton" onclick="mostrarOpciones('si')">Sí</button>
+    <button id="btnNo" class="boton" onclick="mostrarOpciones('no')">No</button>
+                 
+
+    <!-- Opciones que se mostrarán después de hacer clic -->
+    <div id="contenedorRespuesta" class="contenedor-botones">
+        <p id="respuesta"></p>
+        <button class="boton" onclick="reiniciar()">Volver a preguntar</button>
+    </div>
+
+    <!-- Canciones de respuesta -->
+    <audio id="cancionSi">
+        <source src="cancionsi.mp3" type="audio/mp3">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+
+    <audio id="cancionNo">
+        <source src="cancionno.mp3" type="audio/mp3">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+
+    <script>
+        // Función para iniciar la música del menú
+        function iniciarMusica() {
+            document.getElementById('cancionMenu').play();  // Inicia la música
+            document.getElementById('iniciarMusicaBtn').style.display = 'none'; // Oculta el botón de iniciar música
+        }
+
+        // Función que muestra la respuesta dependiendo del botón "Sí" o "No"
+        function mostrarOpciones(respuesta) {
+            var contenedor = document.getElementById('contenedorRespuesta');
+            var mensajeRespuesta = document.getElementById('respuesta');
+            
+            // Ocultamos la imagen inicial y la pregunta
+            document.getElementById('imagenInicial').style.display = 'none';
+            document.getElementById('mensajePregunta').style.display = 'none';
+
+            // Ocultamos los botones de "Sí" y "No"
+            document.getElementById('btnSi').style.display = 'none';
+            document.getElementById('btnNo').style.display = 'none';
+
+            // Ocultamos el botón de "Iniciar Música" después de hacer clic en Sí o No
+            document.getElementById('iniciarMusicaBtn').style.display = 'none';
+
+            // Detener la música del menú después de la interacción
+            document.getElementById('cancionMenu').pause();
+            document.getElementById('cancionMenu').currentTime = 0; // Reiniciar la canción del menú
+
+            // Reproducir la canción dependiendo de la respuesta
+            if (respuesta === 'si') {
+                mensajeRespuesta.innerHTML = "CUUUYYY Te amo mucho❤️";
+                // Insertamos la imagen aquí
+                mensajeRespuesta.innerHTML += '<img src="Cuyoenamora.jpg" alt="Cuy enamorado">';
+                // Reproducir la canción cuando el usuario presiona "Sí"
+                document.getElementById('cancionSi').play();
+            } else {
+                mensajeRespuesta.textContent = ":c";
+                // Insertamos la imagen aquí
+                mensajeRespuesta.innerHTML += '<img src="Cuytriste.jpg" alt="Cuy triste">';
+                // Reproducir la canción cuando el usuario presiona "No"
+                document.getElementById('cancionNo').play();
+            }
+
+            // Mostramos la respuesta después de la interacción
+            contenedor.style.display = 'block';
+        }
+
+        // Función para reiniciar la página y volver a la pregunta inicial
+        function reiniciar() {
+            // Detener todas las canciones antes de reiniciar
+            location.reload();
+        }
+    </script>
 </body>
 </html>
